@@ -36,7 +36,9 @@
   <input type="number" placeholder="Meta su dni" [(ngModel)]="numero">
   <br>
   <button (click)="calcularLetraDni()" >Calcular letra</button>
-
+  <div *ngIf="letra!=''">
+    SU LETRA ES {{letra}}
+  </div>
 </div>
 
  
