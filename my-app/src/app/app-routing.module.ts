@@ -12,7 +12,7 @@ import { ImcComponent } from './components/imc/imc.component';
  * a componentes
  */
 const routes: Routes = [
-  {path:"", component:DniComponent},
+  {path:"", component:ImcComponent},
   {path:"imc", component:ImcComponent},
   {path:"dni", component:DniComponent}
 

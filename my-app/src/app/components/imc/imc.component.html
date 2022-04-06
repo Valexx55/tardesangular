@@ -1,1 +1,20 @@
 <p>imc works!</p>
+<div class="content" role="main">
+    <p>imc works!</p>
+    <H1>{{titulo2}}</H1> 
+    <input type="number" placeholder="Inserte su Peso en (Kg)" [(ngModel)]="peso"/>
+    <br>
+    <input type="number" placeholder="Inserte su Altura en (m)" [(ngModel)]="altura"/>
+    <br>
+    <input type="button" value="Calcular IMC" (click)="calcularImc()"/>
+    <br>
+    <div *ngIf="imc>0">SU IMC: {{imc}}</div>
+    <br>
+    <div *ngIf="estado!=''">Su estado es : {{estado}}</div>
+    <br>
+    <!-- <div *ngIf="rutaimagen!=''"><img src="{{rutaimagen}}" alt=""></div> -->
+    <br>
+    <!--porperty binding -->
+    <div *ngIf="rutaimagen!=''"><img [src]="rutaimagen" alt=""></div>
+
+</div>
