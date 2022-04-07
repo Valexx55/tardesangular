@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Imc } from 'src/app/models/imc';
 
 @Component({
   selector: 'app-imc',
@@ -9,16 +10,18 @@ export class ImcComponent implements OnInit {
   titulo2 = 'Calculo IMC';
   peso:number|null;
   altura:number|null;
-  imc:number;
-  estado:string;
-  rutaimagen:string;
+  oimc:Imc|null;
+
+  array_imcs!:Array<Imc>;//aquí quiero ir guardando todos los imcs que vaya calculando
+  
   constructor() { 
 
     this.peso=0;
     this.altura=0;
-    this.imc=0;
-    this.estado="";
-    this.rutaimagen="";
+    this.oimc=null;
+    this.array_imcs = new Array<Imc>();//inicializo
+
+   
   }
 
   ngOnInit(): void {
@@ -37,40 +40,23 @@ calcularImc():void{
 
   if(typeof this.peso==="number"&& typeof this.altura==="number"){
 
-    this.imc= this.peso/Math.pow(this.altura,2);
-    //FORMA UNO DE REDONDEAR - al estilo TypeScritp
-    this.imc =+this.imc.toFixed(2); ////CASTING - conversión de tipos
-   
-    //FORMA DOS - AL ESTILO JS
-    //let imcredondeado:string = this.imc.toFixed(2);
-    //this.imc = parseFloat(imcredondeado);
-    
+    this.oimc = new Imc(this.peso, this.altura);//llamamos al cosntructor
+    this.array_imcs.push(this.oimc);
 
-    if(this.imc<16)
-    {
-      this.estado="desnutrido";
-      this.rutaimagen="./assets/desnutricion.jpg"
+    let imc_aux:Imc;
+    for (let i=0; i<this.array_imcs.length;i++)
+    { 
+      imc_aux = this.array_imcs[i];
+      console.log("imc actual for tradicional = " + imc_aux.altura + " " + imc_aux.peso + " "+ + imc_aux.numerico) ;
     }
-    else if(this.imc>=16 && this.imc<18)
-    {
-      this.estado="delgado";
-      this.rutaimagen="./assets/delgado.jpg"
-    }
-    else if(this.imc>=18 && this.imc<25)
-    {
-      this.estado="ideal/normal";
-      this.rutaimagen="./assets/pesoideal.png"
-    }
-    else if(this.imc>25 && this.imc<31)
-    {
-      this.estado="sobrepeso";
-      this.rutaimagen="./assets/sobrepeso.jpg"
-    }
-    else if(this.imc>=31)
-    {
-      this.estado="obesidad";
-      this.rutaimagen="./assets/obesidad.jpg"
-    }
+
+    this.array_imcs.forEach(imc_actual => {
+      console.log("imc actual foreach = " + imc_actual.altura + " " + imc_actual.peso + " "+ + imc_actual.numerico) ;
+    } );
+
+    this.array_imcs.forEach(function mostar(imc_actual) {
+      console.log("imc actual foreachcon funcion = " + imc_actual.altura + " " + imc_actual.peso + " "+ + imc_actual.numerico) ;
+    });
 
   }
    
