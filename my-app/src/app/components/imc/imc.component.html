@@ -18,5 +18,30 @@
         <!--porperty binding -->
         <div *ngIf="oimc!.rutaimagen!=''"><img [src]="oimc!.rutaimagen" alt=""></div>
     </div>
+    
+    <!-- <div si el array es !=null y su longuitud es mayor que cero> -->
+    <div *ngIf="array_imcs && array_imcs.length>0">
+        <table>
+            <thead>
+                <th>PESO</th>
+                <th>ALTURA</th>
+                <th>IMC</th>
+                <th>ESTADO</th>
+                <th>IMAGEN</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let auximc of array_imcs">
+                    <td>{{auximc.peso}} </td>
+                    <td>{{auximc.altura}} </td>
+                    <td>{{auximc.numerico}} </td>
+                    <td>{{auximc.estado}} </td>
+                    <td><img [src]="auximc.rutaimagen" alt=""></td>
+                </tr>
 
+            </tbody>
+        </table>
+        <input type="button" value="BORRA LISTADO" (click)="borrarListaImcs()" />
+    </div>
+
+ 
 </div>

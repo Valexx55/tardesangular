@@ -14,6 +14,7 @@ export class ImcComponent implements OnInit {
 
   array_imcs!:Array<Imc>;//aquí quiero ir guardando todos los imcs que vaya calculando
   
+  //INVERSIÓN DE CONTROL IOC --yo no hago el new de ImcComponent lo hace Angular por mí
   constructor() { 
 
     this.peso=0;
@@ -60,8 +61,18 @@ calcularImc():void{
 
   }
    
+  //TODO: hacer un botón en la página
+  //para que cuando se toque, se eliminen
+  //todos los registros de la tabla
+
+  //EXTRA: borrar también el registro individual
 
 
+}
+
+borrarListaImcs()
+{
+  this.array_imcs.length=0;//es una forma de vacíar el array
 }
 
 }
