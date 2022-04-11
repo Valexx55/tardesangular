@@ -12,6 +12,9 @@ export class ImcComponent implements OnInit {
   altura:number|null;
   oimc:Imc|null;
 
+//TODO: vamos a llevar la cuenta de las veces que el usuario vista el IMC
+
+
   array_imcs!:Array<Imc>;//aquí quiero ir guardando todos los imcs que vaya calculando
   
   //INVERSIÓN DE CONTROL IOC --yo no hago el new de ImcComponent lo hace Angular por mí
@@ -21,6 +24,11 @@ export class ImcComponent implements OnInit {
     this.altura=0;
     this.oimc=null;
     this.array_imcs = new Array<Imc>();//inicializo
+
+    //localStorage.getItem //para leer de la memoria
+    //localStorage.setItem //para escribir de la memoria
+    //sessionStorage.setItem("NUM_VECES", 1+'');
+    //TODO: hacer un contador del número de veces que visita el componente
 
    
   }
@@ -59,7 +67,7 @@ calcularImc():void{
       console.log("imc actual foreachcon funcion = " + imc_actual.altura + " " + imc_actual.peso + " "+ + imc_actual.numerico) ;
     });*/
 
-    this.mostrarPorConsola();
+    this.mostrarPorConsola(this.array_imcs);
     let media_peso = this.obtenerMediaPeso(this.array_imcs);
     console.log(`La media del peso es ${media_peso}`);
 
@@ -68,6 +76,23 @@ calcularImc():void{
 
     let maximo_numerico = this.obtenerMaxImc(this.array_imcs);
     console.log(`El IMC más alto es ${maximo_numerico}`);
+
+    let maximo_numerico2 = this.obtenerMaxImc2(this.array_imcs);
+    console.log(`El IMC más alto es ${maximo_numerico2}`);
+
+    let array_obesos = this.filtrarObesos(this.array_imcs);
+    console.log(`MOSTRANDO OBESOS 1`);
+    this.mostrarPorConsola(array_obesos);
+
+    let array_obesos2 = this.filtrarObesos2(this.array_imcs);
+    console.log(`MOSTRANDO OBESOS 2`);
+    this.mostrarPorConsola(array_obesos2);
+
+
+    let array_mas1kg = this.sumarTodos1kg(this.array_imcs);
+    console.log(`MOSTRANDO más 1KG`);
+    this.mostrarPorConsola(array_mas1kg);
+
   }
    
   //TODO: hacer un botón en la página
@@ -84,9 +109,9 @@ borrarListaImcs()
   this.array_imcs.length=0;//es una forma de vacíar el array
 }
 
-mostrarPorConsola ():void
+mostrarPorConsola (array_muestra: Array<Imc>):void
 {
-  this.array_imcs.forEach((imc_actual, i) => {
+  array_muestra.forEach((imc_actual, i) => {
     console.log(` IMC ${i} = ${imc_actual.numerico} - ${imc_actual.estado}`);
   } );
 
@@ -162,4 +187,47 @@ mostrarPorConsola ():void
   
     return maxImc;
 }
+//3) que me de el imc más alto versión alternativa
+obtenerMaxImc2(array_calculo: Array<Imc>):number
+{
+  let maxImc: number = 0;
+  let array_numericos: Array<number>;// = new Array<number>();
+
+  //partiendo del array con IMC, me hago un array sólo con un atributo (numerico)
+    array_numericos = array_calculo.map (imc_aux => imc_aux.numerico); //map como "filtro"
+    maxImc = Math.max(...array_numericos);//spread operador
+    maxImc = Math.max.apply(null, array_numericos);
+
+  
+  return maxImc;
+}
+
+//4) que filtre a los obesos
+filtrarObesos(array_calculo: Array<Imc>): Array<Imc> {
+        
+  let array_new: Array<Imc>;
+  
+    array_new = array_calculo.filter(imc_aux=>imc_aux.estado=="obesidad");
+ 
+  return array_new;
+}
+
+filtrarObesos2(array_calculo: Array<Imc>): Array<Imc> {
+        
+  let array_new: Array<Imc>;
+  
+    array_new = array_calculo.filter(imc_aux=>imc_aux.numerico>=31);
+ 
+  return array_new;
+}
+
+//5) que sume a todos un kg
+sumarTodos1kg(array_calculo: Array<Imc>): Array<Imc> {
+  array_calculo.forEach((imc_actual) => {
+    imc_actual.peso= imc_actual.peso+1;
+  });
+  return array_calculo;
+}
+
+
 }

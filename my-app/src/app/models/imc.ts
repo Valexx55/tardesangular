@@ -29,7 +29,7 @@ export class Imc {
     } else if (this.numerico >= 18 && this.numerico < 25) {
       this.estado = 'ideal/normal';
       this.rutaimagen = './assets/pesoideal.png';
-    } else if (this.numerico > 25 && this.numerico < 31) {
+    } else if (this.numerico >= 25 && this.numerico < 31) {
       this.estado = 'sobrepeso';
       this.rutaimagen = './assets/sobrepeso.jpg';
     }  else /*(this.numerico >= 31)*/ {
@@ -37,4 +37,6 @@ export class Imc {
       this.rutaimagen = './assets/obesidad.jpg';
     }
   }
+
+  
 }
