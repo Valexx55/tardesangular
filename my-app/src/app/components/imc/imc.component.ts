@@ -11,8 +11,10 @@ export class ImcComponent implements OnInit {
   peso:number|null;
   altura:number|null;
   oimc:Imc|null;
+  fecha_actual :string;
+  ultima_conexion! : string;
 
-//TODO: vamos a llevar la cuenta de las veces que el usuario vista el IMC
+
 
 
   array_imcs!:Array<Imc>;//aquí quiero ir guardando todos los imcs que vaya calculando
@@ -24,16 +26,65 @@ export class ImcComponent implements OnInit {
     this.altura=0;
     this.oimc=null;
     this.array_imcs = new Array<Imc>();//inicializo
+    this.fecha_actual = new Date().toString();//con esto obtengo la fecha del navegador en formato String
+
+
+    console.log(`FECHA ACTUAL = ${this.fecha_actual}`);
+    console.log('FECHA ACTUAL = ' +this.fecha_actual);
 
     //localStorage.getItem //para leer de la memoria
     //localStorage.setItem //para escribir de la memoria
     //sessionStorage.setItem("NUM_VECES", 1+'');
     //TODO: hacer un contador del número de veces que visita el componente
+    //TODO: vamos a llevar la cuenta de las veces que el usuario vista el IMC
+//mostrándolo por consola
 
    
   }
 
+  actualizarNumeroVisitas () :void
+  {
+    const visitasKey = 'contador_visitas';
+    let visitasAlmacenado:string|null = localStorage.getItem(visitasKey);
+    let visitas:number;
+
+    if (visitasAlmacenado != null) {
+      visitas = +visitasAlmacenado;
+      localStorage.setItem(visitasKey, ++visitas + '');
+    } else {
+      visitas = 1;
+      localStorage.setItem(visitasKey, visitas + '');
+    }
+
+    console.log(`visitas hasta ahora: ${visitas}`);
+  }
+
+  obtenerYActualizarUltimaConexion():string
+  {
+    let ultima_vez:string|null;
+    let momento_actual: string = '';
+
+      ultima_vez = localStorage.getItem('ultima_vez');
+      momento_actual = new Date().toString();
+      if (ultima_vez == null)
+      {
+        //es la primera vez que se conecta y no hay registro
+        ultima_vez = momento_actual;
+        //tomamos la fecha actual como última conexión
+      }
+
+      //actualizar
+      localStorage.setItem('ultima_vez', momento_actual);
+
+
+    return ultima_vez;
+
+  }
+
   ngOnInit(): void {
+
+    this.actualizarNumeroVisitas();
+    this.ultima_conexion = this.obtenerYActualizarUltimaConexion();
   }
 /*calculo IMC = Peso (kg) / altura (m)2
 
