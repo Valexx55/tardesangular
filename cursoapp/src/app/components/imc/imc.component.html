@@ -1,1 +1,52 @@
-<p>imc works!</p>
+
+<div class="content" role="main">
+    <!-- <p>FECHA ACTUAL medium {{fecha_actual | date:'medium'}}</p>
+    <p>FECHA ACTUAL short {{fecha_actual | date:'short'}}</p>
+    <p>FECHA ACTUAL long {{fecha_actual | date:'long'}}</p> -->
+    <p>Última conexión {{ultima_conexion | date:'medium'}}</p>
+    <H1>{{titulo2}}</H1>
+    <input type="number" placeholder="Inserte su Peso en (Kg)" [(ngModel)]="peso" />
+    <br>
+    <input type="number" placeholder="Inserte su Altura en (m)" [(ngModel)]="altura" />
+    <br>
+    <input type="button" value="Calcular IMC" (click)="calcularImc()" />
+    <br>
+    <div *ngIf="oimc!=null"><!--si oimc es !0 null, te metes con esta sección-->
+        <div *ngIf="oimc!.numerico>0">SU IMC: {{oimc!.numerico}}</div>
+        <br>
+        <div *ngIf="oimc!.estado!=''">Su estado es : {{oimc!.estado}}</div>
+        <br>
+        <!-- <div *ngIf="rutaimagen!=''"><img src="{{rutaimagen}}" alt=""></div> -->
+        <br>
+        <!--porperty binding -->
+        <div *ngIf="oimc!.rutaimagen!=''"><img [src]="oimc!.rutaimagen" alt=""></div>
+    </div>
+    
+    <!-- <div si el array es !=null y su longuitud es mayor que cero> -->
+    <div *ngIf="array_imcs && array_imcs.length>0">
+        <table>
+            <thead>
+                <th>PESO</th>
+                <th>ALTURA</th>
+                <th>IMC</th>
+                <th>ESTADO</th>
+                <th>IMAGEN</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let auximc of array_imcs">
+                    <td>{{auximc.peso}} </td>
+                    <td>{{auximc.altura}} </td>
+                    <td>{{auximc.numerico}} </td>
+                    <td>{{auximc.estado}} </td>
+                    <td><img [src]="auximc.rutaimagen" alt=""></td>
+                </tr>
+
+            </tbody>
+        </table>
+        <input type="button" value="BORRA LISTADO" (click)="ordenarPorPeso()" />
+        <input type="button" value="ORDENAR POR PESO" (click)="ordenarPorPeso()" />
+        <input type="button" value="ORDENAR POR ALTURA" (click)="ordenarPorAltura()" />
+    </div>
+
+ 
+</div>

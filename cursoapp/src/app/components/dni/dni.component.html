@@ -1,1 +1,15 @@
-<p>dni works!</p>
+<div class="content" role="main">
+    <p>{{titulo}}</p>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">DNI</span>
+        <input type="number" class="form-control" [(ngModel)]="numero" placeholder="Meta su dni" aria-label="Username" aria-describedby="basic-addon1">
+      </div>
+
+    <!-- <input type="number" placeholder="Meta su dni" [(ngModel)]="numero"> -->
+    <br>
+    <button (click)="calcularLetraDni()" class="btn btn-primary">Calcular letra</button>
+    <div *ngIf="letra!=''">
+      SU LETRA ES {{letra}}
+    </div>
+  </div>
