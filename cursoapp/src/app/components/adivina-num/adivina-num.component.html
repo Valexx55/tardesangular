@@ -1,0 +1,24 @@
+<p>adivina-num works!</p>
+<div class="content" role="main">
+
+    <label>{{instrucciones}}</label>
+    <br><br>
+    <!-- cuanto pulse enter, se llama a la función -->
+    <input type="text" placeholder="Mete un nº " (keydown.enter)="comprobarNumero()" #cajanum/>
+    <!-- <input type="text" placeholder="Mete un nº 1" (keydown.enter)="comprobarNumero2()" #cajanum/> -->
+    <br><br>
+    <button type="button" (click)="comprobarNumero()">Comprobar Numero</button>
+    
+    <br>
+    
+    <div id="resultado" *ngIf="this.mensaje!=''"><!--si oimc es !0 null, te metes con esta sección-->
+      <div>{{this.mensaje}}</div>
+      <br>
+    
+      <div *ngIf="this!.rutaimagen!=''"><img [src]="this!.rutaimagen" alt=""></div>
+     </div>
+    
+    
+    </div>
+    <!-- <app-dni></app-dni> -->
+    

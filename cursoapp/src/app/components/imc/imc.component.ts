@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Imc } from 'src/app/models/imc';
+import { TipoImc } from 'src/app/models/tipo-imc';
 
 
 //TODO: añadir estilos bootstrap al componente IMC
@@ -249,7 +250,7 @@ Cálculo: 68 ÷ 1,652 (2,7225) = 24,98*/
   filtrarObesos(array_calculo: Array<Imc>): Array<Imc> {
     let array_new: Array<Imc>;
 
-    array_new = array_calculo.filter((imc_aux) => imc_aux.estado == 'obesidad');
+    array_new = array_calculo.filter((imc_aux) => imc_aux.estado == TipoImc[TipoImc.OBESO]);
 
     return array_new;
   }

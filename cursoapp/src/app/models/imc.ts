@@ -26,23 +26,23 @@ export class Imc {
     //this.imc = parseFloat(imcredondeado);
 
     if (this.numerico < 16) {
-      this.estado = 'desnutrido';
+      this.estado =  TipoImc[TipoImc.DESNUTRIDO];//'desnutrido';
       this.rutaimagen = './assets/desnutricion.jpg';
       this.categoria = TipoImc.DESNUTRIDO;
     } else if (this.numerico >= 16 && this.numerico < 18) {
-      this.estado = 'delgado';
+      this.estado = TipoImc[TipoImc.DELGADO];//'delgado';
       this.rutaimagen = './assets/delgado.jpg';
       this.categoria = TipoImc.DELGADO;
     } else if (this.numerico >= 18 && this.numerico < 25) {
-      this.estado = 'ideal/normal';
+      this.estado = TipoImc[TipoImc.IDEAL];//'ideal/normal';
       this.rutaimagen = './assets/pesoideal.png';
       this.categoria = TipoImc.IDEAL;
     } else if (this.numerico >= 25 && this.numerico < 31) {
-      this.estado = 'sobrepeso';
+      this.estado = TipoImc[TipoImc.SOBREPESO];//'sobrepeso';
       this.rutaimagen = './assets/sobrepeso.jpg';
       this.categoria = TipoImc.SOBREPESO;
     }  else /*(this.numerico >= 31)*/ {
-      this.estado = 'obesidad';
+      this.estado = TipoImc[TipoImc.OBESO];//'obesidad';
       this.rutaimagen = './assets/obesidad.jpg';
       this.categoria = TipoImc.OBESO;
     }

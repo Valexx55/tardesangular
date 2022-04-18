@@ -31,6 +31,7 @@
                 <th>IMC</th>
                 <th>ESTADO</th>
                 <th>IMAGEN</th>
+                <!-- <th>CATEGORIA</th> -->
             </thead>
             <tbody>
                 <tr *ngFor="let auximc of array_imcs">
@@ -39,6 +40,7 @@
                     <td>{{auximc.numerico}} </td>
                     <td>{{auximc.estado}} </td>
                     <td><img [src]="auximc.rutaimagen" alt=""></td>
+                    <!-- <td>{{auximc.categoria}} </td> -->
                 </tr>
 
             </tbody>
