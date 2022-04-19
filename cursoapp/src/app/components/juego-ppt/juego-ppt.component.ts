@@ -31,6 +31,9 @@ tabla_decision : Array<Array<number>> = [
 
  @ViewChild('marcador') marcador_component!: MarcadorComponent
 
+//TODO: mantener actualizado el marcador en el tablero
+//usando el componente MarcadorComponent
+
   constructor() { 
     this.selected=false;
     this.resultado='';
@@ -93,6 +96,7 @@ muestraResultado (resultado:number):string
     {
       //gana la máquina
       resultado_str="HAS PALMADO, LO SIENTO";
+      //this.marcador_component.sumarMarcadorMaquina();
     } else if (resultado==0)
     {
       resultado_str="EMPATASTE!!";
@@ -122,6 +126,8 @@ playNow()
   let result = this.tabla_decision[+player][computer];//obtengo el resultado de la partida con ambos datos
 
   this.resultado = this.muestraResultado(result);
+
+  this.marcador_component.actualizarMarcador(result);
 
   let img_computer = document.getElementById("computerPlay");
 
