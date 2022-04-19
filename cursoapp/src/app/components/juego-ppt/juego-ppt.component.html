@@ -1,0 +1,27 @@
+<p>juego-ppt works!</p>
+<div>
+    <div>
+        <h1>Juega y Gana!!!</h1>
+    </div>
+    <div id="botonera" class="botones">
+        <div id="piedra" class="boton" (click)="selectPlay(0)">
+            <img src="assets/imagenesppt/rock.png" alt="Piedra">
+        </div>
+        <div id="papel" class="boton" (click)="selectPlay(1)">
+            <img src="assets/imagenesppt/paper.png" alt="Papel">
+        </div>
+        <div id="tijera" class="boton" (click)="selectPlay(2)">
+            <img src="assets/imagenesppt/scissors.png" alt="Tijera">
+        </div>
+    </div>
+    <div class="contenedor">
+        <button class="button-play" [hidden]="!selected" (click)="playNow()">Jugar</button>
+    </div>
+    <div id="botonera-p" class="botones-p">
+        <div id="piedra" class="boton-p">
+            <img id="computerPlay" alt="">
+        </div>
+    </div>
+    <p>{{resultado}}</p>
+
+</div>
