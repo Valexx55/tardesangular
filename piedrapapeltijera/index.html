@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/estilos.css">
+    <script src="js/programa.js"></script>
+    <title>Piedra, Papel, Tijera, the game</title>
+</head>
+
+<body>
+    <div>
+        <div>
+            <h1>Juega y Gana!!!</h1>
+        </div>
+        <div id="botonera" class="botones">
+            <div id="piedra" class="boton" onclick="selectPlay(0)">
+                <img src="imagenes/rock.png" alt="Piedra">
+            </div>
+            <div id="papel" class="boton" onclick="selectPlay(1)">
+                <img src="imagenes/paper.png" alt="Piedra">
+            </div>
+            <div id="tijera" class="boton" onclick="selectPlay(2)">
+                <img src="imagenes/scissors.png" alt="Piedra">
+            </div>
+        </div>
+        <div class="contenedor">
+            <button class="button-play" onclick="playNow()">Jugar</button>
+        </div>
+        <div id="botonera-p" class="botones-p">
+            <div id="piedra" class="boton-p">
+                <img id="computerPlay">
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
