@@ -76,6 +76,28 @@ getComputerPlay():number {
   return Math.floor(Math.random() * 3);
 }
 
+muestraResultado (resultado:number):string
+{
+  let resultado_str:string='';
+
+    if (resultado==-1)
+    {
+      //gana la máquina
+      resultado_str="HAS PALMADO, LO SIENTO";
+    } else if (resultado==0)
+    {
+      resultado_str="EMPATASTE!!";
+    }else 
+    {
+      //gana el usuario
+      resultado_str="ENHORABUENA, CHAMPION";
+    }
+
+
+  return resultado_str;
+
+}
+
 playNow()
 {
   console.log("El usuario quiere jugar");
@@ -89,6 +111,8 @@ playNow()
 
   
   let result = this.tabla_decision[+player][computer];//obtengo el resultado de la partida con ambos datos
+
+  this.resultado = this.muestraResultado(result);
 
   let img_computer = document.getElementById("computerPlay");
 
