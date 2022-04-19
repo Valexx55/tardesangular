@@ -9,6 +9,7 @@ import { ImcComponent } from './components/imc/imc.component';
 import { LayoutModule } from './layout/layout.module';
 import { AdivinaNumComponent } from './components/adivina-num/adivina-num.component';
 import { JuegoPPTComponent } from './components/juego-ppt/juego-ppt.component';
+import { MarcadorComponent } from './components/marcador/marcador.component';
 
 @NgModule({
   declarations: [ //aquí se definen los componentes del módulo
@@ -16,7 +17,8 @@ import { JuegoPPTComponent } from './components/juego-ppt/juego-ppt.component';
     DniComponent,
     ImcComponent,
     AdivinaNumComponent,
-    JuegoPPTComponent
+    JuegoPPTComponent,
+    MarcadorComponent
   ],
   imports: [ //estos los módulos referenciados 
     BrowserModule,

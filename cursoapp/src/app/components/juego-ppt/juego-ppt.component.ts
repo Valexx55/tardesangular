@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MarcadorComponent } from '../marcador/marcador.component';
 
 @Component({
   selector: 'app-juego-ppt',
   templateUrl: './juego-ppt.component.html',
   styleUrls: ['./juego-ppt.component.css']
 })
-export class JuegoPPTComponent implements OnInit {
+export class JuegoPPTComponent implements OnInit, AfterViewInit {
 
   selected:boolean;
   resultado:string;
@@ -28,9 +29,17 @@ tabla_decision : Array<Array<number>> = [
     [-1, 1, 0]
 ];
 
+ @ViewChild('marcador') marcador_component!: MarcadorComponent
+
   constructor() { 
     this.selected=false;
     this.resultado='';
+    //console.log('constructor');
+    //this.marcador_component.saluda();
+  }
+  ngAfterViewInit(): void {
+    console.log('ngAfterViewInit');
+    this.marcador_component.saluda();
   }
 
   ngOnInit(): void {

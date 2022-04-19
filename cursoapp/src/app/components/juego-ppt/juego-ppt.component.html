@@ -18,10 +18,11 @@
         <button class="button-play" [hidden]="!selected" (click)="playNow()">Jugar</button>
     </div>
     <div id="botonera-p" class="botones-p">
-        <div id="piedra" class="boton-p">
+        <div class="boton-p">
             <img id="computerPlay" alt="">
         </div>
     </div>
     <p>{{resultado}}</p>
 
 </div>
+<app-marcador #marcador></app-marcador>
