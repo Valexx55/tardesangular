@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-marcador',
@@ -11,9 +11,12 @@ export class MarcadorComponent implements OnInit {
   marcador_usuario:number;
   marcador_maquina:number;
 
+  @Input() nombrejugadormarcador!:string;
+
   constructor() { 
     this.marcador_maquina = 0;
     this.marcador_usuario = 0;
+    this.nombrejugadormarcador='';
   }
 
   ngOnInit(): void {
@@ -26,6 +29,7 @@ export class MarcadorComponent implements OnInit {
 
   actualizarMarcador (resultado:number)
   {
+    console.log("Nombre jugador hijo = " + this.nombrejugadormarcador);
     if (resultado==-1)
     {
       //gana la máquina

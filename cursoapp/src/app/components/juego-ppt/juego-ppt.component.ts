@@ -29,7 +29,8 @@ tabla_decision : Array<Array<number>> = [
     [-1, 1, 0]
 ];
 
- @ViewChild('marcador') marcador_component!: MarcadorComponent
+ @ViewChild('marcador') marcador_component!: MarcadorComponent;
+ nombrejugador!:string;
 
 //TODO: mantener actualizado el marcador en el tablero
 //usando el componente MarcadorComponent
@@ -37,6 +38,7 @@ tabla_decision : Array<Array<number>> = [
   constructor() { 
     this.selected=false;
     this.resultado='';
+    this.nombrejugador='';
     //console.log('constructor');
     //this.marcador_component.saluda();
   }
@@ -53,6 +55,7 @@ tabla_decision : Array<Array<number>> = [
   {
     
     console.log("Opcion seleccionada " + opcion);
+    console.log("Nombre jugador " + this.nombrejugador);
     localStorage.setItem("selected", opcion+'');
     this.decorateSelectedPlay(opcion);
     this.selected=true;
@@ -81,8 +84,11 @@ tabla_decision : Array<Array<number>> = [
     
 
 }
-//TODO: HACED UN MÉTODO QUE ACTUALICE DEBIDAMENTE LA
-//MENSAJE DE RESULTADO SEGÚN EL RESULTADO DE LA PARTIDA
+
+//TODO: PERMITIR QUE EL USUARIO INTRODUZCA UN NOMBRE
+//EN EL COMPONENTE DEL JUEGO
+//Y ESE NOMBRE, SE MUESTRA EN EL TÍTULO DEL 
+//MARCADOR. USAD PARA ELLO EL @INPUT
 
 getComputerPlay():number {
   return Math.floor(Math.random() * 3);

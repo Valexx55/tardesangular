@@ -2,7 +2,9 @@
 <table class="table text-center mt-3">
     <thead class="thead-dark">
       <tr>
-        <th scope="col">JUGADOR</th>
+        <!-- if ternario: si el jugador tiene nombre, que aparezca
+        si no, que aparezca "JUGADOR" -->
+        <th scope="col"> {{ (nombrejugadormarcador!='') ? nombrejugadormarcador : 'JUGADOR' }}</th>
         <th scope="col">MAQUINA</th>
       </tr>
     </thead>

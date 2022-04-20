@@ -3,6 +3,10 @@
     <div>
         <h1>Juega y Gana!!!</h1>
     </div>
+    <div class="form-group my-4">
+        <label for="nombrej">Nombre Jugador</label>
+        <input type="text" [(ngModel)]="nombrejugador" class="form-control" id="nombrej" placeholder="Intro nombre">
+      </div>
     <div id="botonera" class="botones">
         <div id="piedra" class="boton" (click)="selectPlay(0)">
             <img src="assets/imagenesppt/rock.png" alt="Piedra">
@@ -25,4 +29,4 @@
     <p>{{resultado}}</p>
 
 </div>
-<app-marcador #marcador></app-marcador>
+<app-marcador #marcador [nombrejugadormarcador]="nombrejugador"></app-marcador>
