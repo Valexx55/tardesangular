@@ -10,6 +10,8 @@ import { LayoutModule } from './layout/layout.module';
 import { AdivinaNumComponent } from './components/adivina-num/adivina-num.component';
 import { JuegoPPTComponent } from './components/juego-ppt/juego-ppt.component';
 import { MarcadorComponent } from './components/marcador/marcador.component';
+import { PerrosComponent } from './components/perros/perros.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [ //aquí se definen los componentes del módulo
@@ -18,13 +20,15 @@ import { MarcadorComponent } from './components/marcador/marcador.component';
     ImcComponent,
     AdivinaNumComponent,
     JuegoPPTComponent,
-    MarcadorComponent
+    MarcadorComponent,
+    PerrosComponent
   ],
   imports: [ //estos los módulos referenciados 
     BrowserModule,
     AppRoutingModule,
     LayoutModule,
-    FormsModule //para poder usar las directivas de [(ngModel)] -  two way binding
+    FormsModule, //para poder usar las directivas de [(ngModel)] -  two way binding
+    HttpClientModule //vamos a usar comunicación HTTP
   ],
   providers: [], //servicios
   bootstrap: [AppComponent] //componente inicial
