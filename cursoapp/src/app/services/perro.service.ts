@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { PerroWeb } from '../models/perro-web';
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +18,12 @@ export class PerroService {
   //http es un atributo de PerroService - INYECCIÓN DE DEPDENCIAS
   constructor(private http:HttpClient) { 
 
-    this.http.get(PerroService.API_WEB_PERROS);
+    //this.http.get(PerroService.API_WEB_PERROS);
 
   }
 
-  dameUnPerro ()
+  dameUnPerro ():Observable<PerroWeb>
   {
-    
+   return this.http.get<PerroWeb>(PerroService.API_WEB_PERROS);
   }
 }
