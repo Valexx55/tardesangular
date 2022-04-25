@@ -27,3 +27,7 @@ export class PerroService {
    return this.http.get<PerroWeb>(PerroService.API_WEB_PERROS);
   }
 }
+//TODO: REPRESENTAR EN LA PLANTILLA
+// DE PERROS (HTML)
+//LA INFORMACIÓN RECIBIDA
+//POR EL SERVICIO

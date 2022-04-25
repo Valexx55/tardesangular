@@ -11,9 +11,14 @@ export class PerrosComponent implements OnInit, AfterViewInit {
   //ESTE COMPONENTE VA A MOSTRAR INFORMACIÓN
   //OBTENIDA DE INTERNET, Y PARA ELLO, USA UN SERVICIO
 
+  imagen_perro:string;
+  
   //perro_service pasa a ser una propiedad del Componente
   //1º se ejecuta el constructor
+
+
   constructor(private perro_service: PerroService) {
+    this.imagen_perro='';
     //MÉTODOS DE ACCESO A APIS WEB/COM REMOTA DESDE EL NAVEGADOR/JS
     /*
       AJAX - jAVASCRITP ASÍNCORNO-xmLhTTPrEQUEST (JS) --
@@ -44,6 +49,7 @@ export class PerrosComponent implements OnInit, AfterViewInit {
           console.log('PERRO RECIBIDO CON ÉXITO!!!! ');
           console.log(perro_recibido.message);
           console.log(perro_recibido.status);
+          this.imagen_perro=perro_recibido.message;
         }, //ha llegado y BIEN! habemus PERRO 200
       }
     );
