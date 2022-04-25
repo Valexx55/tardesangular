@@ -1,3 +1,10 @@
 <p>perros works!</p>
-<img alt="imagenperro"
-src={{imagen_perro}}>
+
+<div *ngIf="perro_recibido"><!--si perro recibdo es distinto de undefined y de null-->
+    HEMOS RECIBIDO UN PERRO <br>
+    <img alt="imagenperro"
+src={{perro_recibido.message}}>
+</div>
+<div *ngIf="!perro_recibido">
+    NO HEMOS RECIBIDO UN PERRO
+</div>
