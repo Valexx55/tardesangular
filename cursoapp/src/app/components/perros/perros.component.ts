@@ -1,3 +1,4 @@
+import { HttpResponse } from '@angular/common/http';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Observer } from 'rxjs';
 import { PerroWeb } from 'src/app/models/perro-web';
@@ -56,10 +57,42 @@ export class PerrosComponent implements OnInit, AfterViewInit {
 
   //2º se ejecuta el ngOnInitg (después del constructor)
   ngOnInit(): void {
-    this.perro_service.dameUnPerro().subscribe(
+    
+    /*this.perro_service.dameUnPerro().subscribe(
       //cuando acabes de traer el perro, me avisas aquí
       this.observador_perro
+    );*/
+
+    this.perro_service.dameUnPerroConCabecera().subscribe(
+      //cuando acabes de traer el perro, me avisas aquí
+      {
+        complete: () => {
+          console.log('LA COMUNICACIÓN HA TERMINADO');
+        }, //la comunicación ha terminado! el HTTP ha llegado
+        error: (error_mensaje:string) => {
+          console.error(error_mensaje);
+          alert('ERROR, INTENTELO MÁS TARDE');
+        }, //ha llegado con un 500 status
+        next: (httprx) => {
+          console.log('PERRO RECIBIDO CON ÉXITO!!!! ');
+          //accedo a las cabeceras
+          this.mostrarCabeceras (httprx);
+          //HAGO YO EL CASTING DE FORMA EXPLÍCITA
+          this.perro_recibido = <PerroWeb>httprx.body;
+          this.perro_recibido = httprx.body as PerroWeb;
+        }, //ha llegado y BIEN! habemus PERRO 200
+      }
     );
+  }
+
+  mostrarCabeceras (http_perro: HttpResponse<PerroWeb>):void
+  {
+ //tipo mime
+ console.log("TIPO MIME = "+ http_perro.headers.get('content-type'));
+ //status
+ console.log("STATUS = "+ http_perro.status);
+ //status text
+ console.log("STATUS TEXT = "+ http_perro.statusText);
   }
 
   //TODO: HACED UN PIE DE LA FOTO DEL PERRO 
