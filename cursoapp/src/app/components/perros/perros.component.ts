@@ -16,6 +16,7 @@ export class PerrosComponent implements OnInit, AfterViewInit {
   imagen_perro:string;
   perro_recibido!: PerroWeb;
   observador_perro: Observer<PerroWeb>;
+  raza_perro:string;
   
   //perro_service pasa a ser una propiedad del Componente
   //1º se ejecuta el constructor
@@ -23,6 +24,7 @@ export class PerrosComponent implements OnInit, AfterViewInit {
 
   constructor(private perro_service: PerroService) {
     this.imagen_perro='';
+    this.raza_perro= '';
 
     this.observador_perro = {
       complete: () => {
@@ -38,6 +40,7 @@ export class PerrosComponent implements OnInit, AfterViewInit {
         console.log(perro_rx.status); //tx transmitido
         this.imagen_perro=perro_rx.message;
         this.perro_recibido = perro_rx;
+        this.raza_perro=this.obtenerRaza();
       }, //ha llegado y BIEN! habemus PERRO 200
     }
     //MÉTODOS DE ACCESO A APIS WEB/COM REMOTA DESDE EL NAVEGADOR/JS
@@ -80,6 +83,7 @@ export class PerrosComponent implements OnInit, AfterViewInit {
           //HAGO YO EL CASTING DE FORMA EXPLÍCITA
           this.perro_recibido = <PerroWeb>httprx.body;
           this.perro_recibido = httprx.body as PerroWeb;
+          this.raza_perro=this.obtenerRaza();
         }, //ha llegado y BIEN! habemus PERRO 200
       }
     );
@@ -87,15 +91,28 @@ export class PerrosComponent implements OnInit, AfterViewInit {
 
   mostrarCabeceras (http_perro: HttpResponse<PerroWeb>):void
   {
- //tipo mime
- console.log("TIPO MIME = "+ http_perro.headers.get('content-type'));
- //status
- console.log("STATUS = "+ http_perro.status);
- //status text
- console.log("STATUS TEXT = "+ http_perro.statusText);
+    //tipo mime
+    console.log("TIPO MIME = "+ http_perro.headers.get('content-type'));
+    //status
+    console.log("STATUS = "+ http_perro.status);
+    //status text
+    console.log("STATUS TEXT = "+ http_perro.statusText);
   }
 
   //TODO: HACED UN PIE DE LA FOTO DEL PERRO 
   //PARA QUE SE MUESTRE LA RAZA
+
+  obtenerRaza():string{
+
+    let raza: string | null;
+
+      //SOL CANDI
+      raza = this.perro_recibido.message.slice(30, this.perro_recibido.message.lastIndexOf("/"));
+      //SOL GEO
+      //raza = this.perro_recibido.message.split("/")[4];
+
+    return raza;
+  }
+
 
 }

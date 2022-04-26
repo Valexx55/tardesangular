@@ -36,7 +36,3 @@ export class PerroService {
   }
   
 }
-//TODO: REPRESENTAR EN LA PLANTILLA
-// DE PERROS (HTML)
-//LA INFORMACIÓN RECIBIDA
-//POR EL SERVICIO

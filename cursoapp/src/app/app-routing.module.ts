@@ -4,6 +4,7 @@ import { AdivinaNumComponent } from './components/adivina-num/adivina-num.compon
 import { DniComponent } from './components/dni/dni.component';
 import { ImcComponent } from './components/imc/imc.component';
 import { JuegoPPTComponent } from './components/juego-ppt/juego-ppt.component';
+import { OciomadridComponent } from './components/ociomadrid/ociomadrid.component';
 import { PerrosComponent } from './components/perros/perros.component';
 
 const routes: Routes = [
@@ -11,7 +12,8 @@ const routes: Routes = [
   {path:"dni", component:DniComponent}, 
   {path:"adivina", component:AdivinaNumComponent},
   {path:"juegoppt", component:JuegoPPTComponent},
-  {path:"perros", component:PerrosComponent}
+  {path:"perros", component:PerrosComponent},
+  {path:"ocio", component:OciomadridComponent}
 
 ];
 
