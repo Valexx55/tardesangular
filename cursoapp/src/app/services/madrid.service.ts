@@ -18,7 +18,9 @@ export class MadridService {
   
   obtenerEventos(distrito:string):Observable<HttpResponse<any>>
   {
-    return this.httpcliente.get<any>(MadridService.URL_API_EVENTOS_MADRID+distrito, { observe: 'response' });
+    let url_get:string = MadridService.URL_API_EVENTOS_MADRID+distrito;
+    console.log(`GET A ${url_get}`);
+    return this.httpcliente.get<any>(url_get, { observe: 'response' });
   }
 
 }

@@ -38,7 +38,29 @@ export class OciomadridComponent implements OnInit {
     //4. LLAMAR AL MÉTODO QUE DEVUELVE EL OBSERVABLE Y SUSCRIBIRME
     //5. DEFINIR UN OBSERVADOR/OBSERVER, PARA RECEPCIONAR EL MENSAJE
 
-    this.madridService.obtenerEventos(nombre_distrito)
+    this.madridService.obtenerEventos(nombre_distrito).subscribe
+    (
+      {
+        complete: () => {console.log("comunicación completada");},
+        error: (mensaje_error) => { 
+          
+          console.error(`ERROR ${mensaje_error.status} ${mensaje_error.message}` );
+          alert("IMPOSIBLE CONECTAR EL SERVIDOR");
+        },
+        next: (respuesta) => 
+        {
+          console.log(`CUERPO = ${respuesta}`);
+          let eventos:any = respuesta.body;
+
+          eventos ['@graph'].forEach (
+            (evento:any) =>  {
+              //TODO: COMPLETAR PARA MOSTRAR EN LA PLANTILLA
+              console.log(evento.title);
+            }
+          )
+        }
+      }
+    );
 
 
   }
