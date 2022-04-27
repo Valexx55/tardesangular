@@ -26,6 +26,8 @@ export class PerrosComponent implements OnInit, AfterViewInit {
     this.imagen_perro='';
     this.raza_perro= '';
 
+    //este es el enarcagado de procesar/recibir la respuesta
+    //del servidor cuando no recibo la cabecera (la forma simplificado)
     this.observador_perro = {
       complete: () => {
         console.log('LA COMUNICACIÓN HA TERMINADO');
@@ -61,10 +63,10 @@ export class PerrosComponent implements OnInit, AfterViewInit {
   //2º se ejecuta el ngOnInitg (después del constructor)
   ngOnInit(): void {
     
-    /*this.perro_service.dameUnPerro().subscribe(
+    this.perro_service.dameUnPerro().subscribe(
       //cuando acabes de traer el perro, me avisas aquí
       this.observador_perro
-    );*/
+    );
 
     this.perro_service.dameUnPerroConCabecera().subscribe(
       //cuando acabes de traer el perro, me avisas aquí
@@ -76,7 +78,7 @@ export class PerrosComponent implements OnInit, AfterViewInit {
           console.error(error_mensaje);
           alert('ERROR, INTENTELO MÁS TARDE');
         }, //ha llegado con un 500 status
-        next: (httprx) => {
+        next: (httprx:HttpResponse<PerroWeb>) => {
           console.log('PERRO RECIBIDO CON ÉXITO!!!! ');
           //accedo a las cabeceras
           this.mostrarCabeceras (httprx);

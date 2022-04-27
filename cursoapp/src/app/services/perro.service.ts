@@ -17,19 +17,24 @@ export class PerroService {
 
 
   //http es un atributo de PerroService - INYECCIÓN DE DEPDENCIAS
+  //CON LA ID LE ESTOY DICIENDO A ANGULAR:
+  //ANGULAR, DAME UN OBJETO HTTPCLIENT!
+  //QUE TENGA, GET, POST, PUT, DELETE, 
   constructor(private http:HttpClient) { 
 
     //this.http.get(PerroService.API_WEB_PERROS);
 
   }
 
+  //DE ESTA MANERA NO TENGO ACCESO A PARTE DEL MENSAJE HTTP
+  //NO TENGO ACCESO A LA CABECERA
   dameUnPerro ():Observable<PerroWeb>
   {
    return this.http.get<PerroWeb>(PerroService.API_WEB_PERROS);
   }
 
   //LA DFIERENCIA ES QUE ASÍ, OBTENGO ACCESO A LA CABECERA
-  
+
   dameUnPerroConCabecera ():Observable<HttpResponse<PerroWeb>>
   {
    return this.http.get<PerroWeb>(PerroService.API_WEB_PERROS,  { observe: 'response' });
