@@ -1,0 +1,1 @@
+INDEX VERSION 1.131+C:\Users\valer\Documents\CAS\TARDESANGULAR\PROFE\.metadata\.plugins\org.eclipse.jdt.core

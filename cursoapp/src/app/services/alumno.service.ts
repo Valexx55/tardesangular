@@ -12,6 +12,8 @@ export class AlumnoService {
 //PARA OBTENER INFORMACIÓN DE ÉL
 
 /**
+ * REST
+ * 
  * GET - LEER
  * POST - CREAR
  * PUT - ACTUALIZAR
@@ -26,7 +28,7 @@ export class AlumnoService {
 
   leerAlumnosDeGitHub () :Observable<Array<Alumno>>
   { 
-    return this.http.get<Array<Alumno>>("");
+    return this.http.get<Array<Alumno>>("https://my-json-server.typicode.com/valexx55/alumnostardes/alumno");
   }
 
 }
