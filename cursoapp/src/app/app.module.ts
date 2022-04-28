@@ -13,6 +13,7 @@ import { MarcadorComponent } from './components/marcador/marcador.component';
 import { PerrosComponent } from './components/perros/perros.component';
 import {HttpClientModule} from '@angular/common/http';
 import { OciomadridComponent } from './components/ociomadrid/ociomadrid.component';
+import { AlumnosComponent } from './components/alumnos/alumnos.component';
 
 @NgModule({
   declarations: [ //aquí se definen los componentes del módulo
@@ -23,7 +24,8 @@ import { OciomadridComponent } from './components/ociomadrid/ociomadrid.componen
     JuegoPPTComponent,
     MarcadorComponent,
     PerrosComponent,
-    OciomadridComponent
+    OciomadridComponent,
+    AlumnosComponent
   ],
   imports: [ //estos los módulos referenciados 
     BrowserModule,
