@@ -14,6 +14,7 @@ import { PerrosComponent } from './components/perros/perros.component';
 import {HttpClientModule} from '@angular/common/http';
 import { OciomadridComponent } from './components/ociomadrid/ociomadrid.component';
 import { AlumnosComponent } from './components/alumnos/alumnos.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [ //aquí se definen los componentes del módulo
@@ -32,7 +33,8 @@ import { AlumnosComponent } from './components/alumnos/alumnos.component';
     AppRoutingModule,
     LayoutModule,
     FormsModule, //para poder usar las directivas de [(ngModel)] -  two way binding
-    HttpClientModule //vamos a usar comunicación HTTP
+    HttpClientModule, //http 
+    FontAwesomeModule //LIBRERÍA ICONOGRAFICA
   ],
   providers: [], //servicios
   bootstrap: [AppComponent] //componente inicial

@@ -15,6 +15,8 @@
       <div class="card-footer text-muted">
         <p>{{alumno.creadoEn|date:'short'}}</p>
       </div>
+      <button class="btn btn-danger" (click)="borrarAlumno(alumno.id)"> <fa-icon [icon]="iconoborrar"></fa-icon></button>
+      <button class="btn btn-success" (click)="editarAlumno(alumno)"> <fa-icon [icon]="iconoeditar"></fa-icon></button>
       
       
     </div>
