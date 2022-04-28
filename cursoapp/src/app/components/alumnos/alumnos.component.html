@@ -1,9 +1,7 @@
 <div class="listaAlumnos">
   
   <div *ngFor="let alumno of lista_alumnos" class="card" style="width: 18rem;">
-    <!-- <img *ngIf="!alumno.fotoHashCode" class="card-img-top" src="https://randomuser.me/api/portraits/men/{{alumno.id}}.jpg" alt="Card image cap"> -->
-    <!-- añadiendo una parte variable de la URL consigo que se refresque la imagen. Fuerzo la recarga y evito la caché -->
-    <!-- <img *ngIf="alumno.fotoHashCode" class="card-img-top" src="{{ruta_servidor}}/obtenerfoto/{{alumno.id}}?fotoid={{alumno.fotoHashCode}}" alt="Card image cap"> -->
+    
     
     <div class="card-body">
       <h5 class="card-title">{{alumno.id}} {{alumno.nombre}} {{alumno.apellido}}</h5>
