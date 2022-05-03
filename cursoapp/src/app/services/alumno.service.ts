@@ -41,4 +41,13 @@ export class AlumnoService {
 
   }
 
+  //GET http://localhost:8085/pagina?page=0&size=1
+
+  leerAlumnosPorPaginas (page:number, size:number):Observable<any>
+  {
+    let parametros: HttpParams = new HttpParams().set('page', page).set('size', size);
+
+    return this.http.get<any>("http://localhost:8085/pagina", {params : parametros});
+  }
+
 }

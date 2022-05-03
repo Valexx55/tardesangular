@@ -1,21 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Alumno } from 'src/app/models/alumno';
 import { AlumnoService } from 'src/app/services/alumno.service';
 //POR CADA ICONO, UN IMPORT
 import { faCoffee, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { faEdit } from '@fortawesome/free-regular-svg-icons';
-import { PageEvent } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-alumnos',
   templateUrl: './alumnos.component.html',
   styleUrls: ['./alumnos.component.css']
 })
-export class AlumnosComponent implements OnInit {
+export class AlumnosComponent implements OnInit, AfterViewInit {
 
 
-lista_alumnos!:Array<Alumno>;//esta es la lista visible
+  //el atributo paginador es el elemento <mat-paginator></mat-paginator>
+  @ViewChild(MatPaginator) paginador!:MatPaginator;
+
+  lista_alumnos!:Array<Alumno>;//esta es la lista visible
 
   iconoCafe :IconDefinition = faCoffee;
   iconoborrar: IconDefinition = faTrashAlt;
@@ -28,26 +31,64 @@ lista_alumnos!:Array<Alumno>;//esta es la lista visible
 
   constructor(public servicio_alumnos:AlumnoService) {
   } 
+  ngAfterViewInit(): void {
+   console.log("Aquí se ha cargado la plantilla -existe this.paginador-");
+   //PERSONALIZAR EL paginador- lo ponemos en español
+   this.paginador._intl.itemsPerPageLabel="Registros por página";
+   this.paginador._intl.nextPageLabel="Siguiente";
+   this.paginador._intl.previousPageLabel="Anterior";
+   this.paginador._intl.firstPageLabel="Primera página";
+   this.paginador._intl.lastPageLabel="Última página";
+   //falta traducir el OF! 
+  }
 
 
   ngOnInit(): void {   
-    this.getAlumnosFromService();
+    //this.getAlumnosFromService(); //obtener todos
+    this.getAlumnosPagFromService();//obtengo los alumnos paginados
   }
 
   paginar (evento:PageEvent)
   {
     console.log(`evento.pageIndex ${evento.pageIndex}`);
     console.log(`evento.pageSize ${evento.pageSize}`);
+
+    this.totalPorPagina = evento.pageSize;
+    this.paginaActual = evento.pageIndex;
     
     //TODO: comunicar con el servidor EL SERVICIO PAGINA
     //PARA LEEER REGISTRO POR BLOQUES/TROZOS/PAGINAS
+    this.getAlumnosPagFromService();
+
+  }
+
+  getAlumnosPagFromService () //TRAE LA PÁGINA
+  {
+      this.servicio_alumnos.leerAlumnosPorPaginas(this.paginaActual, this.totalPorPagina).subscribe
+      (
+        {
+          complete:()=>{
+            console.log("comunicaión completada");
+          },
+          error:(error_rx)=>{
+            console.error(error_rx);
+          },
+          next:(respuesta)=>{
+
+             this.lista_alumnos = respuesta.content as Alumno[];//casting
+             this.totalRegistros = respuesta.totalElements;
+          }
+
+        }
+
+      );
 
   }
 
 
 
   //DRY 
-  getAlumnosFromService ()
+  getAlumnosFromService () //TRAE TODOS
   {
    this.servicio_alumnos.leerAlumnosDeGitHub().subscribe(
     {
