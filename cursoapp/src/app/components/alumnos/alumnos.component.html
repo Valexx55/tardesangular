@@ -21,5 +21,12 @@
       
     </div>
   </div>
+  <mat-paginator [length]="totalRegistros"
+              [pageSize]="totalPorPagina"
+              [pageSizeOptions]="opcionesPagina"
+              [pageIndex]="paginaActual"
+              showFirstLastButtons
+              (page)="paginar($event)">
+</mat-paginator>
 </div>
 

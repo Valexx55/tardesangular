@@ -5,6 +5,7 @@ import { AlumnoService } from 'src/app/services/alumno.service';
 import { faCoffee, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { faEdit } from '@fortawesome/free-regular-svg-icons';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-alumnos',
@@ -20,12 +21,27 @@ lista_alumnos!:Array<Alumno>;//esta es la lista visible
   iconoborrar: IconDefinition = faTrashAlt;
   iconoeditar: IconDefinition = faEdit;
 
+  totalRegistros:number=0;
+  totalPorPagina:number=2;
+  opcionesPagina: number[] = [2, 4, 6, 8];
+  paginaActual:number = 0;
+
   constructor(public servicio_alumnos:AlumnoService) {
   } 
 
 
   ngOnInit(): void {   
     this.getAlumnosFromService();
+  }
+
+  paginar (evento:PageEvent)
+  {
+    console.log(`evento.pageIndex ${evento.pageIndex}`);
+    console.log(`evento.pageSize ${evento.pageSize}`);
+    
+    //TODO: comunicar con el servidor EL SERVICIO PAGINA
+    //PARA LEEER REGISTRO POR BLOQUES/TROZOS/PAGINAS
+
   }
 
 

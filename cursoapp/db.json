@@ -1,0 +1,76 @@
+{
+    "alumno": [
+      {
+          "id": 12,
+          "nombre": "RVinicius Pele",
+          "apellido": "Jr O Rei",
+          "email": "vini@correo.es",
+          "edad": 20,
+          "creadoEn": "2022-02-15T20:46:45.928+00:00",
+          "fotoHashCode": null
+      },
+      {
+          "id": 13,
+          "nombre": "RAdolfo",
+          "apellido": "De la Rosa",
+          "email": "adol@vdf.es",
+          "edad": 10,
+          "creadoEn": "2022-02-16T20:09:32.144+00:00",
+          "fotoHashCode": null
+      },
+      {
+          "id": 14,
+          "nombre": "Rpaco",
+          "apellido": "pil",
+          "email": "paco@todo.es",
+          "edad": 65,
+          "creadoEn": "2022-02-16T20:25:56.259+00:00",
+          "fotoHashCode": null
+      },
+      {
+          "id": 15,
+          "nombre": "RASFSDF",
+          "apellido": "ADFADSF",
+          "email": "jses@es",
+          "edad": 6,
+          "creadoEn": "2022-02-16T20:54:13.445+00:00",
+          "fotoHashCode": null
+      },
+      {
+          "id": 16,
+          "nombre": "RASFSDF",
+          "apellido": "ADFADSF",
+          "email": "jses@es",
+          "edad": 6,
+          "creadoEn": "2022-02-16T20:55:58.789+00:00",
+          "fotoHashCode": null
+      },
+      {
+          "id": 17,
+          "nombre": "RVALERIANO",
+          "apellido": "MORENO",
+          "email": "valerianomoreno@gmail.com",
+          "edad": 38,
+          "creadoEn": "2022-02-16T20:56:26.104+00:00",
+          "fotoHashCode": null
+      },
+      {
+          "id": 18,
+          "nombre": "RPedrito",
+          "apellido": "Gomez",
+          "email": "pg@bnc.es",
+          "edad": 37,
+          "creadoEn": "2022-02-21T18:20:32.598+00:00",
+          "fotoHashCode": null
+      },
+      {
+          "id": 19,
+          "nombre": "RRobinho",
+          "apellido": "CUrsaou",
+          "email": "robino@nobeboagua.es",
+          "edad": 36,
+          "creadoEn": "2022-02-21T19:12:27.626+00:00",
+          "fotoHashCode": null
+      }
+  ]
+  }

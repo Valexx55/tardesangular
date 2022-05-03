@@ -1,3 +1,6 @@
 - EL EFECTO DE EJECUTAR npm install desde la carpeta raíz del proyecto
 es que todas las librerías listadas en el fichero package.json se desgarguen
 desde NPM hasta la carpeta node_modules (en la versión indicada)
+
+- ANGULAR MATERIAL. Librería de componentes de angular: "Etiquetas que me da la gente
+de Angular, listas para su uso"

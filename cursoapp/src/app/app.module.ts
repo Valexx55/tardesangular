@@ -15,6 +15,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { OciomadridComponent } from './components/ociomadrid/ociomadrid.component';
 import { AlumnosComponent } from './components/alumnos/alumnos.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [ //aquí se definen los componentes del módulo
@@ -34,7 +36,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     LayoutModule,
     FormsModule, //para poder usar las directivas de [(ngModel)] -  two way binding
     HttpClientModule, //http 
-    FontAwesomeModule //LIBRERÍA ICONOGRAFICA
+    FontAwesomeModule, 
+    BrowserAnimationsModule, //LIBRERÍA ICONOGRAFICA
+    MatPaginatorModule
   ],
   providers: [], //servicios
   bootstrap: [AppComponent] //componente inicial

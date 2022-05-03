@@ -30,6 +30,7 @@ export class AlumnoService {
   leerAlumnosDeGitHub () :Observable<Array<Alumno>>
   { 
     return this.http.get<Array<Alumno>>("https://my-json-server.typicode.com/valexx55/alumnostardes/alumno");
+    //return this.http.get<Array<Alumno>>("http://localhost:3000/alumno");
   }
 
   borrarAlumno (id_alumno:number): Observable<void>
