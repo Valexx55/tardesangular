@@ -32,7 +32,12 @@
               Intro edad entre 1 y 130
         </div>
     </div>
+    <div class="form-group">
+        <label for="foto">Foto</label>
+        <input type="file" (change)="seleccionarFoto($event)" class="form-control" id="foto" name="foto" >
+       
+    </div>
     <br>
-    <!-- TODO: AÑADIR FOTO -->
+
     <button type="submit" [disabled]="!formulario_alumno.valid" class="btn btn-primary">ENVIAR</button>
   </form>

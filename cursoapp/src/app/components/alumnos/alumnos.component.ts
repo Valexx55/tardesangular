@@ -56,8 +56,7 @@ export class AlumnosComponent implements OnInit, AfterViewInit {
     this.totalPorPagina = evento.pageSize;
     this.paginaActual = evento.pageIndex;
     
-    //TODO: comunicar con el servidor EL SERVICIO PAGINA
-    //PARA LEEER REGISTRO POR BLOQUES/TROZOS/PAGINAS
+   
     this.getAlumnosPagFromService();
 
   }
@@ -111,7 +110,7 @@ export class AlumnosComponent implements OnInit, AfterViewInit {
   borrarAlumno(id_alumno:number)
   {
     console.log("Borrando al alumno id "+ id_alumno );
-    //TODO: BORRAR ALUMNO EN EL SERVIDOR
+   
     
     if (confirm(`¿Deseas eliminar al alumno ${id_alumno}?`))//si confirm == true
     {

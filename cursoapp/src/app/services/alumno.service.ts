@@ -17,6 +17,7 @@ export class AlumnoService {
  * 
  * GET - LEER
  * POST - CREAR
+ * post2 - crear con foto
  * PUT - ACTUALIZAR
  * DELETE - BORRAR
  */
@@ -56,6 +57,20 @@ export class AlumnoService {
   crearAlumnoEnServidor (alumno:Alumno):Observable<Alumno>
   {
     return this.http.post<Alumno>("http://localhost:8085/",alumno, {headers:this.cabeceras});
+  }
+
+
+  crearAlumnoEnServidorConFoto (alumno:Alumno, archivo:File):Observable<Alumno>
+  {
+    let formData = new FormData();
+
+      formData.append('nombre', alumno.nombre);
+      formData.append('apellido', alumno.apellido);
+      formData.append('edad', alumno.edad+'');
+      formData.append('email', alumno.email);
+      formData.append('archivo', archivo);
+
+    return this.http.post<Alumno>("http://localhost:8085/crear-con-foto", formData);
   }
 
 }
