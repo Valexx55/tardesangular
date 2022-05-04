@@ -22,7 +22,10 @@ export class AlumnoService {
  */
 
 
+ //ME CREO UN ATRIBUTO PARA ESPECIFICAR EL TIPO MIME EN LA PETICIÓN
+ //Content-Type  application/json
 
+  cabeceras: HttpHeaders = new HttpHeaders ({'Content-Type': 'application/json'});
 
   constructor(private http:HttpClient) { }
 
@@ -48,6 +51,11 @@ export class AlumnoService {
     let parametros: HttpParams = new HttpParams().set('page', page).set('size', size);
 
     return this.http.get<any>("http://localhost:8085/pagina", {params : parametros});
+  }
+
+  crearAlumnoEnServidor (alumno:Alumno):Observable<Alumno>
+  {
+    return this.http.post<Alumno>("http://localhost:8085/",alumno, {headers:this.cabeceras});
   }
 
 }
