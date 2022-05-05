@@ -1,5 +1,4 @@
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Alumno } from '../models/alumno';
@@ -22,9 +21,22 @@ export class AlumnoService {
  * DELETE - BORRAR
  */
 
+  alumno_en_edicion:Alumno;
 
  //ME CREO UN ATRIBUTO PARA ESPECIFICAR EL TIPO MIME EN LA PETICIÓN
  //Content-Type  application/json
+
+  //este método lo invoco desde alumnosComponent
+  guardarAlumnoEnEdicion (alumno:Alumno)
+  {
+    this.alumno_en_edicion = alumno;
+  }
+
+  //este método se invoca desde el Formulario
+  obtenerAlumnoEnEdicion ():Alumno
+  {
+    return this.alumno_en_edicion;
+  }
 
   cabeceras: HttpHeaders = new HttpHeaders ({'Content-Type': 'application/json'});
 
@@ -71,6 +83,26 @@ export class AlumnoService {
       formData.append('archivo', archivo);
 
     return this.http.post<Alumno>("http://localhost:8085/crear-con-foto", formData);
+  }
+
+  actualizarAlumno (alumno:Alumno):Observable<Alumno>
+  {
+    return this.http.put<Alumno>("http://localhost:8085/"+alumno.id, alumno, {headers:this.cabeceras});
+  }
+
+  actualizarAlumnoConFoto (alumno:Alumno, archivo:File)
+  {
+
+    let formData = new FormData();
+
+      formData.append('nombre', alumno.nombre);
+      formData.append('apellido', alumno.apellido);
+      formData.append('edad', alumno.edad+'');
+      formData.append('email', alumno.email);
+      formData.append('archivo', archivo);
+
+    return this.http.put<Alumno>("http://localhost:8085/editar-con-foto/"+alumno.id, formData);
+
   }
 
 }

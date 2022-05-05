@@ -6,6 +6,7 @@ import { faCoffee, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { faEdit } from '@fortawesome/free-regular-svg-icons';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-alumnos',
@@ -29,7 +30,7 @@ export class AlumnosComponent implements OnInit, AfterViewInit {
   opcionesPagina: number[] = [2, 4, 6, 8];
   paginaActual:number = 0;
 
-  constructor(public servicio_alumnos:AlumnoService) {
+  constructor(public servicio_alumnos:AlumnoService, private servicio_rutas:Router) {
   } 
   ngAfterViewInit(): void {
    console.log("Aquí se ha cargado la plantilla -existe this.paginador-");
@@ -141,7 +142,11 @@ export class AlumnosComponent implements OnInit, AfterViewInit {
   editarAlumno (alumno_editar:Alumno)
   {
     console.log("Mod al alumno id "+ alumno_editar.id );
-    //TODO: MODIFICAR ALUMNO EN EL SERVIDOR
+    //1 guardo en el servicio el alumno en edicion
+    this.servicio_alumnos.guardarAlumnoEnEdicion(alumno_editar);
+    //2 navegar al formulario
+    this.servicio_rutas.navigate(["/alumnos/form/edit", alumno_editar.id]);
+
   }
   
 }

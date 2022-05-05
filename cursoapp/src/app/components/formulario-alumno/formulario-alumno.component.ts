@@ -11,6 +11,7 @@ import { AlumnoService } from 'src/app/services/alumno.service';
 })
 export class FormularioAlumnoComponent implements OnInit {
 
+  en_edicion:boolean;
   alumno:Alumno;
   //este atributo me sirve para dos cosas
   //una: alamacenar el fichero seleccionado en caso que el usuario suba alguno
@@ -22,6 +23,7 @@ export class FormularioAlumnoComponent implements OnInit {
 
     this.alumno= new Alumno();
     this.foto_seleccionada=null;
+    this.en_edicion=false;
 
     this.observador = {
       complete:()=>{
@@ -32,7 +34,7 @@ export class FormularioAlumnoComponent implements OnInit {
       },
       next:(alumno_nuevo)=>{
 
-        alert('Alumno creado correctamente con id ' +alumno_nuevo.id);
+        alert('Alumno actualizado correctamente ' +alumno_nuevo.id);
         //CUANDO VUELVA, QUE VAYA AL LISTADO AUTOMÁTICAMENTE
         //PARA PODER NAVEGAR PROGRAMÁTICAMENTE/POR CÓDIGO NO SÓLO CON ENLACE
         //ESTA EL SERVICIO/OBJETO ROUTER DE ANGULAR
@@ -44,6 +46,49 @@ export class FormularioAlumnoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    //tenemos que saber si vengo al formulario
+    //para CREAR o para EDITAR
+    //Y PARA ELLO, vamos a usar la URL
+
+    let url = location.href;
+    console.log("estoy en "+ url);
+    if (this.estoyEnEdicion(url))
+    {
+      console.log("estoy editando");
+      //mostrar los datos del alumno en edicion
+      this.alumno = this.alumnoservicio.obtenerAlumnoEnEdicion();
+      this.en_edicion=true;
+
+    } else {
+      console.log("estoy creando");
+    }
+
+
+  }
+
+  estiloBoton():string
+  {
+    let estilo:string = '';
+
+    if (this.en_edicion)
+    {
+      estilo = "btn btn-success";//estilo verde para editar
+    } else {
+      estilo = "btn btn-primary";//estilo azul para crear
+    }
+
+    return estilo;
+
+  }
+
+  estoyEnEdicion (ruta:string):boolean
+  {
+    let editando:boolean = false;
+
+    //si la ruta, contiene edit, estoy en edicion
+      editando = (ruta.indexOf('edit')!=-1);
+
+    return editando;
   }
 
   crearAlumnoSinFoto ()
@@ -54,6 +99,21 @@ export class FormularioAlumnoComponent implements OnInit {
   crearAlumnoConFoto()
   {
     this.alumnoservicio.crearAlumnoEnServidorConFoto(this.alumno, this.foto_seleccionada).subscribe(this.observador);
+  }
+
+  editarAlumno()
+  {
+    console.log("llamando a editarAlumno");
+
+    if (this.foto_seleccionada!=null)
+    {
+      this.alumnoservicio.actualizarAlumnoConFoto(this.alumno, this.foto_seleccionada).subscribe(this.observador);
+      console.log("crearAlumnoConFoto()");
+    } else {
+      this.alumnoservicio.actualizarAlumno(this.alumno).subscribe(this.observador);
+      console.log("crearAlumnoSinFoto()");
+    }
+    
   }
   crearAlumno()
   {

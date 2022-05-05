@@ -4,7 +4,8 @@
   <div *ngFor="let alumno of lista_alumnos" class="card" style="width: 18rem;">
     <!--si el alumno tiene foto, su fotohascode no es null">-->
     <img *ngIf="!alumno.fotoHashCode" class="card-img-top" alt="Foto Alumno" src="https://randomuser.me/api/portraits/women/{{alumno.id}}.jpg">
-    <img *ngIf="alumno.fotoHashCode" class="card-img-top" alt="Foto Alumno" src="http://localhost:8085/obtenerfoto/{{alumno.id}}">
+    <!-- añado un sufijo aletorio / variable para forzar una URL distinta y que se cargue la foto actualizada. Evitamos el CACHEO automático -->
+    <img *ngIf="alumno.fotoHashCode" class="card-img-top" alt="Foto Alumno" src="http://localhost:8085/obtenerfoto/{{alumno.id}}?fotoid={{alumno.fotoHashCode}}">
     
     
     <div class="card-body">

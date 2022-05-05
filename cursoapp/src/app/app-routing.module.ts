@@ -17,7 +17,8 @@ const routes: Routes = [
   {path:"perros", component:PerrosComponent},
   {path:"ocio", component:OciomadridComponent},
   {path:"alumnos", component:AlumnosComponent},
-  {path:"alumnos/form", component: FormularioAlumnoComponent}
+  {path:"alumnos/form", component: FormularioAlumnoComponent},//RUTA CREAR
+  {path:"alumnos/form/edit/:id", component: FormularioAlumnoComponent}//RUTA EDITAR
 
 ];
 
