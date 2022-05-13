@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Marcador } from 'src/app/models/marcador';
 
 @Component({
@@ -15,6 +15,7 @@ export class MarcadorComponent implements OnInit {
   marcador:Marcador;
 
   @Input() nombrejugadormarcador!:string;
+  @Output() emisorMarcador = new EventEmitter<Marcador>();
   
 
   constructor() { 
@@ -70,6 +71,7 @@ export class MarcadorComponent implements OnInit {
       this.marcador.puntuacion_jugador = this.marcador.puntuacion_jugador +1;
      
     }
+    this.emisorMarcador.emit(this.marcador);
     //Guardar el Marcador en localStorage
     //SERIALIZAR-> PASAR UN OBJETO
     //DE SU REPRERESANTACIÓN EN MEMORIA

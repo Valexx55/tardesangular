@@ -31,4 +31,4 @@
 </div>
 <!-- nombrejugadormarcador es la propiedad del hijo  y nombrejugador es la propiedad del padre-->
 <!--<app-marcador #marcador [nombrejugadormarcador]="nombrejugador"></app-marcador>  -->
-<app-marcador #marcador [nombrejugadormarcador]="nombrejugador" ></app-marcador>
+<app-marcador (emisorMarcador)="informarMarcador($event)" #marcador [nombrejugadormarcador]="nombrejugador" ></app-marcador>
