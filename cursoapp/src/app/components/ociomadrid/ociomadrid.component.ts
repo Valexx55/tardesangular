@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Evento } from 'src/app/models/evento';
+import { ComunicadorService } from 'src/app/services/comunicador.service';
 import { MadridService } from 'src/app/services/madrid.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class OciomadridComponent implements OnInit {
   array_eventos!:Array<Evento>;//aquí quiero guardar todos los títulos que recupere del distrito
   numero_eventos:number;
 
-  constructor(private madridService:MadridService) { 
+  constructor(private madridService:MadridService, private comunicadorService: ComunicadorService) { 
     this.distritos = ['ARGANZUELA', 'BARAJAS', 'CARABANCHEL', 'CENTRO', 'CHAMARTIN', 'CHAMBERI', 'CIUDAD LINEAL', 'FUENCARRAL-EL PARDO', 
       'HORTALEZA', 'LATINA', 'MONCLOA-ARAVACA', 'MORATALAZ', 'PUENTE DE VALLECAS', 'RETIRO', 'SALAMANCA', 'SAN BLAS-CANILLEJAS', 'TETUAN', 
       'USERA', 'VICALVARO', 'VILLA DE VALLECAS', 'VILLAVERDE'];
@@ -90,7 +91,9 @@ export class OciomadridComponent implements OnInit {
     console.log("ID TOCADO = " + id_tocado);
     //OBTENGO LA LAT / LONG
     console.log(`LAT ${this.array_eventos[id_tocado-1].latitud} LONG ${this.array_eventos[id_tocado-1].longitud}`);
-    //TODO: mostrar en un mapa el punto geográfico
+    //comunicamos el evento seleccionado al servicio comunicador
+    this.comunicadorService.comunicaNuevoEventoSeleccionado(this.array_eventos[id_tocado-1]);
+
   }
 
   verElDetalle (evento_tocado: Evento)

@@ -18,6 +18,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { FormularioAlumnoComponent } from './components/formulario-alumno/formulario-alumno.component';
+import { MapaComponent } from './components/mapa/mapa.component';
 
 @NgModule({
   declarations: [ //aquí se definen los componentes del módulo
@@ -30,7 +31,8 @@ import { FormularioAlumnoComponent } from './components/formulario-alumno/formul
     PerrosComponent,
     OciomadridComponent,
     AlumnosComponent,
-    FormularioAlumnoComponent
+    FormularioAlumnoComponent,
+    MapaComponent
   ],
   imports: [ //estos los módulos referenciados 
     BrowserModule,

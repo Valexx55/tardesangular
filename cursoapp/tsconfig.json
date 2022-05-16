@@ -2,6 +2,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "noImplicitAny": false,
     "strictNullChecks": false,//así relajo la comprobación de nulos
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
